@@ -1,2 +1,11 @@
 .sass-cache/
 *.css.map
+lib/bower_components
+lib/node_modules
+css/
+lib/.sass-cache
+app/values/keys.js
+app/values/
+app/controllers/ContributeToRegCtrl.js
+app/controllers/AlertCoupleCtrl.js
+

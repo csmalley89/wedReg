@@ -1,0 +1,88 @@
+<!-- <div ng-controller="CoupleBannerCtrl">
+  <div ng-include="'partials/couplebanner.html'"></div>
+</div>
+
+<div class="row">
+  <div ng-repeat="item in gifts | filter: searchText.search">
+    <div class="col s12 m5 offset-s1">
+      <div class="card medium">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{{item.image}}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4 truncate">{{item.price}}<br>{{item.title}}<i class="material-icons right">more_vert</i></span>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">{{item.price}}<i class="material-icons right">close</i></span>
+          <p>{{item.comments}}</p>
+        </div>
+        <div class="card-action">
+          <a href="{{item.link}}" target="_blank">View on Amazon</a>
+
+          <a ng-click="itemDelete(item.id)">Remove item</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div ng-controller="CoupleBannerCtrl">
+  <div ng-include="'partials/couplebanner.html'"></div>
+</div> -->
+
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br>
+      <h2 class="header center pink-text text-accent-1">{{registries.firstName1}} &#38 {{registries.firstName2}}</h2>
+      <div class="row center">
+        <h5 class="header col s12 light">{{registries.WeddingDate}} | {{registries.location}}</h5>
+        <h5 class="header col s12 light"><span countdown end-date="{{registries.WeddingDate}}" units="days"></span> to go!</h5>
+      </div>
+      <div class="row">
+        <div class="col s6 offset-s3">
+          <span>
+            <input ng-model="searchText.search" type="text" autofocus placeholder="Search Registered Items" class="white teal-text">
+<!--             <a ng-click="getItemList()" class="btn waves-effect waves-light teal lighten-1">Search</a> -->
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="parallax" parallax><img src="img/weddingbanner.png"></div>
+</div>
+
+<!-- DND Version -->
+<div class="row">
+  <!-- <div class="col s12 m5 offset-s1"> -->
+    <ul dnd-list="gifts">
+      <li
+        ng-repeat="gift in gifts | filter: searchText"
+        dnd-draggable="gift"
+        dnd-moved="gifts.splice($index, 1)"
+        dnd-effect-allowed="move"
+        dnd-selected="selected = gift"
+        ng-class="{'selected' : selected === gift}"
+        class="col s12 m5 offset-s1"
+        ng-mouseenter="options=true" ng-mouseleave="options=false">
+        <div class="card medium">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img draggable="false" class="activator" ng-src="{{gift.image}}">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4 truncate">{{gift.price}}{{gift.title}}<i class="material-icons right">more_vert</i></span>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">{{gift.price}}<i class="material-icons right">close</i></span>
+            <p>{{gift.comments}}</p>
+            <p style="display:none">Index: {{gift.index = gifts.indexOf(gift)}}</p>
+          </div>
+          <div class="card-action">
+            <a href="{{gift.link}}" target="_blank">View on Amazon</a>
+            <a ng-click="giftDelete(gift.id)">Remove Item</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  <!-- </div> -->
+</div>

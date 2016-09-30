@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>wedReg | Chris Smalley</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="lib/bower_components/angular-modal/modal.css">
+    <link rel="stylesheet" type="text/css" media="screen,projection" href="lib/bower_components/materialize/dist/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" media="screen,projection" href="css/main.css">
+  </head>
+  <body ng-app="wedReg">
+    <div ng-controller="TopCtrl">
+      <div ng-include="'partials/navbar.html'"></div>
+        <div class="row">
+            <div ng-view></div>
+        </div>
+    </div>
+
+
+
+    <!-- 3rd party libs -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="lib/bower_components/materialize/dist/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+    <script src="lib/bower_components/angular-materialize/src/angular-materialize.js"></script>
+    <script src="lib/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="lib/bower_components/firebase/firebase.js"></script>
+    <script src="lib/bower_components/angularfire/dist/angularfire.min.js"></script>
+    <script src="lib/bower_components/angular-modal/modal.js"></script>
+    <script src="lib/bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js"></script>
+    <!-- <script src="lib/bower_components/lodash/dist/lodash.js"></script> -->
+    <!-- <script src="lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
+    <script src="lib/sha256.js"></script>
+
+    <!-- App specific files -->
+    <script src="app/app.js"></script>
+    <!-- providers -->
+    <script src="app/values/keys.js"></script>
+    <script src="app/factories/AuthFactory.js"></script>
+    <script src="app/factories/GiftFactory.js"></script>
+    <script src="app/factories/RegistryFactory.js"></script>
+    <script src="app/factories/AmazonFactory.js"></script>
+    <script src="app/factories/MemberFactory.js"></script>
+    <script src="app/factories/ItemToRegister.js"></script>
+    <script src="app/factories/SearchTermData.js"></script>
+
+    <!-- controllers -->
+    <script src="app/controllers/navCtrl.js"></script>
+    <script src="app/controllers/TopCtrl.js"></script>
+    <script src="app/controllers/loginCtrl.js"></script>
+    <script src="app/controllers/DateCtrl.js"></script>
+    <script src="app/controllers/AmazonCtrl.js"></script>
+    <script src="app/controllers/GiftCtrl.js"></script>
+    <script src="app/controllers/UserTypeCtrl.js"></script>
+    <script src="app/controllers/RegistryCtrl.js"></script>
+    <script src="app/controllers/Countdown.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,13 @@
+<div class="modal-wrapper">
+<div class="btf-modal card-panel indigo darken-1">
+  <h2>Registered Item</h2>
+  <img src="{{itemToRegister.image}}">
+  <p>{{itemToRegister.title}}</p>
+  <input ng-model="itemToRegister.comments" type="text" placeholder="Enter a comment">
+  <div class="row">
+    <a class="col s4 offset-s1 waves-effect waves-light blue-grey btn-large"
+      ng-click="closeModal()">Close modal</a>
+    <a class="col s4 offset-s1 waves-effect waves-light blue-grey btn-large" ng-click="giftToSite()">Register</a>
+  </div>
+</div>
+</div>

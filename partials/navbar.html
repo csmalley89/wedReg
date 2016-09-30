@@ -1,0 +1,25 @@
+<nav class="white" role="navigation" ng-controller="NavCtrl">
+  <div class="nav-wrapper">
+    <a id="logo-container" ng-href="#/" class="brand-logo">wedReg</a>
+    <ul class="right hide-on-med-and-down">
+      <li ng-show="!$parent.isLoggedIn"><a href="#loginModal" modal>Login</a></li>
+      <li ng-show="$parent.isLoggedIn"><a href="#/registry/addgifts">Add to Registry</a></li>
+      <li ng-show="$parent.isLoggedIn"><a href="#/registry/:registryId">View Registry</a></li>
+      <li ng-show="$parent.isLoggedIn"><a href="#/">Logout</a></li>
+    </ul>
+
+    <ul id="nav-mobile" class="side-nav">
+      <li ng-show="!$parent.isLoggedIn"><a href="#loginModal" modal>Login</a></li>
+      <li ng-show="$parent.isLoggedIn"><a href="#/registry/addgifts">Add to Registry</a></li>
+      <li ng-show="$parent.isLoggedIn"><a href="#/registry/:registryId">View Registry</a></li>
+      <li ng-show="$parent.isLoggedIn"><a href="#/">Logout</a></li>
+    </ul>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    <div class="input-field col s4 right">
+      <input id="search" type="search" ng-model="searchText.search">
+      <label for="search"><i class="material-icons">search</i></label>
+    </div>
+  </div>
+</nav>
+
+

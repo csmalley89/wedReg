@@ -1,0 +1,37 @@
+
+<div id="index-banner" class="parallax-container">
+  <div class="section guestWelcome">
+    <div class="container">
+    <br><br><br>
+      <div class="row"><span class="header center"><h2 class="teal-text text-lighten-2" style="display: inline">wedReg</h2><h4 class="pink-text text-lighten-2" style="display: inline">Couple Search</h4></span></div>
+
+<!--       <div class="row">
+        <h5 class="left-align col s6 teal-text text-darken-2">Thank you for registering! Find your couple below or use the seach bar above to narrow down the results.</h5>
+      </div> -->
+      <div class="row">
+        <div class="input-field col s12 center">
+          <input class="white teal-text lighten-2" id="search" type="search" ng-model="searchText.search" placeholder="search for registered couples">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="parallax" parallax><img src="img/pricing_banner.jpg"></div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div ng-repeat="registry in registries | filter: searchText.search">
+      <div class="col s12 m4">
+        <div class="card-panel teal">
+          <span class="pink-text text-accent-1"><h3>{{registry.firstName1}} &#38 {{registry.firstName2}}</h3>
+          </span>
+          <span class="white-text"><h4>{{registry.WeddingDate}} {{registry.location}}</h4>
+          </span>
+
+<!-- need to build function that onclick saves guest to couples registry, then allows them to see their registered items -->
+          <a class="waves-effect white-text waves-pink btn-flat">Join Registry</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

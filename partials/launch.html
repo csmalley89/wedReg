@@ -1,0 +1,272 @@
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br>
+      <h1 class="header center teal-text text-lighten-2">wedReg</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Big or small, wedReg is the easiest way for couples to get it all.</h5>
+      </div>
+      <div class="row center">
+        <a href="#guestRegModal" class="btn-large waves-effect waves-light teal lighten-1" modal>FIND A COUPLE</a>
+        <a href="#coupleRegModal" class="btn-large waves-effect waves-light teal lighten-1" modal>SIGN UP</a>
+        <p><span>Already joined?<a href="#loginModal" class="teal-text" modal>LOG IN</a></span></p>
+      </div>
+      <br><br>
+    </div>
+  </div>
+  <div class="parallax" parallax><img src="img/wedding1.jpg"></div>
+</div>
+
+<div class="container">
+  <div class="section">
+
+    <!--   Icon Section   -->
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">shopping_cart</i></h2>
+          <h5 class="center">Wedding Registry 2.0</h5>
+
+          <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+        </div>
+      </div>
+
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+          <h5 class="center">User Experience Focused</h5>
+
+          <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+        </div>
+      </div>
+
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+          <h5 class="center">Easy to work with</h5>
+
+          <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--===============================================
+=            Couple Registration Modal            =
+================================================-->
+
+<div class="modal" id="coupleRegModal">
+  <div class="row modal-content">
+    <div>
+      <h5>Welcome to wedReg!</h5>
+      <p>At wedReg, we like to make the registry process easy on the couple and
+      their guests so when the big day comes, you'll have piece in mind that your
+      guests were able to give you the gifts you actually want! Please take a
+      minute and fill out this form, then we can start the fun!</p>
+      <h5 data-field="id">The Couple</h5>
+      <table>
+        <tbody>
+          <tr>
+            <td class="input-field"><input class="validate" id="firstName1"
+            ng-model="couple.firstName1" required="" type="text">
+            <label class="teal-text lighten-1" for="firstName1">First
+            Name</label></td>
+            <td class="input-field"><input class="validate" id="lastName1"
+            ng-model="couple.lastName1" required="" type="text"> <label class="teal-text lighten-1" for="lastName1">Last Name</label></td>
+            <td>
+              <h6>and</h6>
+            </td>
+            <td class="input-field"><input class="validate" id="firstName2"
+            ng-model="couple.firstName2" required="" type="text">
+            <label class="teal-text lighten-1" for="firstName2">First
+            Name</label></td>
+            <td class="input-field"><input class="validate" id="lastName2"
+            ng-model="couple.lastName2" required="" type="text"> <label class="teal-text lighten-1" for="lastName2">Last Name</label></td>
+          </tr>
+        </tbody>
+      </table>
+      <h5 data-field="id">The Wedding Day</h5>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <div class="ng-scope" ng-controller="DateCtrl">
+                <input input-date
+                  type="text"
+                  name="created"
+                  id="inputCreated"
+                  ng-model="couple.WeddingDate"
+                  container=""
+                  format="mm/dd/yyyy"
+                  months-full="{{ month }}"
+                  months-short="{{ monthShort }}"
+                  weekdays-full="{{ weekdaysFull }}"
+                  weekdays-short="{{ weekdaysShort }}"
+                  weekdays-letter="{{ weekdaysLetter }}"
+                  disable="disable"
+                  min="{{ minDate }}"
+                  max="{{ maxDate }}"
+                  today="today"
+                  first-day="1"
+                  clear="clear"
+                  close="close"
+                  select-years="15"
+                  on-start="onStart()"
+                  on-render="onRender()"
+                  on-open="onOpen()"
+                  on-close="onClose()"
+                  on-set="onSet()"
+                  on-stop="onStop()" />
+              </div>
+            </td>
+            <td>
+              <h6>in</h6>
+            </td>
+            <td class="input-field"><input class="validate" id="location"
+            ng-model="couple.location" required="" type="text"> <label class="teal-text lighten-1" for="location">Location</label></td>
+          </tr>
+        </tbody>
+      </table>
+      <h6 data-field="id">If a guest has to miss your big day, where can they
+      send gifts?</h6>
+      <table>
+        <tbody>
+          <tr>
+            <td class="input-field"><input class="validate" id="street"
+            ng-model="couple.coupleStreet" required="" type="text">
+            <label class="teal-text lighten-1" for="street">Address</label></td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <tbody>
+          <tr>
+            <td class="input-field"><input class="validate" id="city" ng-model="couple.coupleCity" required="" type="text"> <label class="teal-text lighten-1" for="city">City</label></td>
+            <td class="input-field"><input class="validate" id="state"
+            ng-model="couple.coupleState" required="" type="text">
+            <label class="teal-text lighten-1" for="state">State</label></td>
+            <td class="input-field"><input class="validate" id="zip" ng-model="couple.coupleZip" required="" type="text"> <label class="teal-text lighten-1" for="zip">Zip</label></td>
+          </tr>
+        </tbody>
+      </table>
+      <h6 data-field="id">Most importantly register for wedReg, so we can
+      remember you!</h6>
+      <table>
+        <tbody>
+          <tr>
+            <td class="input-field"><input class="validate" id="email"
+            ng-model="account.email" required="" type="text"> <label class=
+            "teal-text lighten-1" for="email">Email</label></td>
+            <td class="input-field"><input class="validate" id="password"
+            ng-model="account.password" required="" type="password">
+            <label class="teal-text lighten-1" for="password">Password</label></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="modal-footer">
+        <a class=" modal-action modal-close waves-effect waves-green btn-flat"
+        href="#!" ng-click="coupleRegister()">Submit</a> <a class=" modal-action modal-close waves-effect waves-green btn-flat" href="#!">Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--====  End of Couple Registration Modal  ====-->
+
+
+
+
+<!--==============================================
+=            Guest Registration Modal            =
+===============================================-->
+
+<div class="modal" id="guestRegModal">
+  <div class="row modal-content">
+    <h5>Welcome to wedReg!</h5>
+    <p>Please register before we proceed. We promise not to spam you, your info is just for the couple. At wedReg, we like to make the registry process easy on the couple and their guests. That's why we need your info first so the couple will know exactly where to send those handwritten thank you notes!</p>
+    <form class="col s12">
+      <div class="row">
+        <table>
+          <tbody><tr>
+            <td class="input-field">
+              <input id="first_name" type="text" class="validate" required ng-model="guest.firstName">
+              <label for="guest_first_name" class="teal-text lighten-1">First Name</label>
+            </td>
+            <td class="input-field">
+              <input id="last_name" type="text" class="validate" required ng-model="guest.lastName">
+              <label for="guest_last_name" class="teal-text lighten-1">Last Name</label>
+            </td>
+          </tr></tbody>
+        </table>
+      </div>
+      <div class="row">
+        <table>
+          <tbody>
+          <tr><td class="input-field"><input id="street" type="text" class="validate" required ng-model="guest.street">
+            <label class="teal-text lighten-1" for="street"> Street Address</label></td></tr>
+          </tbody>
+        </table>
+        <table>
+          <tbody>
+            <tr><td class="input-field"><input id="city" type="text" class="validate" required ng-model="guest.city">
+            <label class="teal-text lighten-1" for="city">City</label></td>
+            <td class="input-field"><input id="state" type="text" class="validate" required ng-model="guest.state">
+            <label class="teal-text lighten-1" for="state">State</label></td>
+            <td class="input-field"><input id="zip" type="text" class="validate" required ng-model="guest.zip">
+            <label class="teal-text lighten-1" for="zip">Zip</label></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="email" type="text" class="validate" required ng-model="account.email">
+          <label class="teal-text lighten-1" for="email">Email</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="password" type="password" class="validate" required ng-model="account.password">
+          <label class="teal-text lighten-1" for="password">Password</label>
+        </div>
+      </div>
+    </form>
+    <div class="modal-footer">
+      <a class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="guestRegister()">Submit</a>
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+    </div>
+  </div>
+</div>
+
+
+<!--====  End of Guest Registration Modal  ====-->
+
+
+
+<!--==============================================
+=            Login Modal            =
+===============================================-->
+
+<div class="auth-form modal" id="loginModal">
+  <div class="modal-content">
+    <div class="row">
+      <h4>Welcome back!</h4>
+      <div class="input-field col s12">
+        <input autofocus="true" class="validate" id="email" ng-model="account.email" required="" type="email">
+        <label for="email">Email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input class="validate" id="password" ng-model="account.password"
+        required="" type="password"> <label for="password">Password</label>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="login()">Login</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!">Cancel</a>
+  </div>
+</div>
+
+
+<!--====  End of Login Modal  ====-->
