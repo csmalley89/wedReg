@@ -47,7 +47,7 @@ app.controller("TopCtrl", function($scope, $window, $route, AuthFactory){
       currentUser = user.uid;
       console.log("Current user logged is?", user.uid);
       $scope.isLoggedIn = true;
-      $window.location.href = '#/launch';
+      // $window.location.href = '#/launch';
       // checkRoute();
       $route.reload();
       $scope.isReady = true;

@@ -14,9 +14,22 @@ app.factory("MemberFactory", ($q, $http, FirebaseURL)=>{
     });
   };
 
+  // let getMembers = (userId)=>{
+  //   return $q((resolve, reject)=>{
+  //     $http.get(`${FirebaseURL}/members.json?orderBy="uid"&equalTo="${userId}"`)
+  //     .success((memberData)=>{
+  //       resolve(memberData);
+  //     })
+  //     .error((error)=>{
+  //       reject(error);
+  //       console.log("error", error);
+  //     });
+  //   });
+  // };
+
   let getMembers = (userId)=>{
     return $q((resolve, reject)=>{
-      $http.get(`${FirebaseURL}/members.json?orderBy="uid"&equalTo="${userId}"`)
+      $http.get(`${FirebaseURL}/members.json`)
       .success((memberData)=>{
         resolve(memberData);
       })
@@ -26,6 +39,18 @@ app.factory("MemberFactory", ($q, $http, FirebaseURL)=>{
       });
     });
   };
+
+  //   let getMembers = (memberId)=>{
+  //   return $q((resolve, reject)=>{
+  //     $http.get(`${FirebaseURL}/members/${memberId}.json`)
+  //     .success((memberData)=>{
+  //       resolve(memberData);
+  //     })
+  //     .error((error)=>{
+  //       reject(error);
+  //     });
+  //   });
+  // };
 
   let getMembersOfRegistry = (registryId)=>{
     return $q((resolve, reject)=>{

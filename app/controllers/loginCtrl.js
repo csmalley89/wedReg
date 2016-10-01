@@ -101,15 +101,40 @@ app.controller("LoginCtrl", function($scope, AuthFactory, RegistryFactory, $rout
     AuthFactory.loginUser($scope.account)
     .then((data)=>{
       console.log("You logged in with your email", data);
+      let userRole = data.role;
       let currentUserId = data.uid;
-      checkWithCurrentUsers(data, currentUserId);
-      if (data){
-        $window.location.href = '#/registry/addgifts';
+      getMemberRole(data, userRole, currentUserId);
+      if (userRole){
+        console.log(userRole)
+        // $window.location.href = '#/findcouple';
+      } else {
+        $window.location.href = '#/findcouple';
       }
     }, (error)=>{
       console.log(`Error logging in user ${error}`);
     });
   };
+
+
+  function getMemberRole(memberData, userRole, currentUserId){
+    // let userRole;
+    let members;
+    MemberFactory.getMembers()
+    .then((members)=>{
+      if(members){
+        Object.keys(members).forEach((key)=>{
+          if (members[key].role === "couple" && currentUserId === members[key].uid) {
+            let userRole = members[key].role;
+            $window.location.href = '#/registry/addgifts';
+            console.log(members[key].uid)
+            console.log(members[key].role)
+            console.log(userRole)
+          }
+        });
+      }
+    })
+  }
+
 
 
   function checkWithCurrentUsers(userData, currentUserId){
