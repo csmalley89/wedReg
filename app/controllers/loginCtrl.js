@@ -75,7 +75,7 @@ app.controller("LoginCtrl", function($scope, AuthFactory, RegistryFactory, $rout
         uid: userData.uid,
       }
       AuthFactory.saveUserToFirebase(userObj)
-      RegistryFactory.createGuest($scope.guests)
+      RegistryFactory.createGuest($scope.guest)
       .then((guestData)=>{
         guestId = guestData.name;
         let memberObj = {

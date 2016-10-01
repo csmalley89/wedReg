@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("GuestJoinCtrl", function($scope, RegistryFactory, SearchTermData) {
+app.controller("GuestJoinCtrl", function($scope, RegistryFactory, AuthFactory, SearchTermData) {
   $scope.searchText = SearchTermData;
 
   function getRegistries (){
