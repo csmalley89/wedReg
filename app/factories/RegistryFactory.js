@@ -16,7 +16,7 @@ app.factory("RegistryFactory", ($q, $http, FirebaseURL, AuthFactory, GiftFactory
 
   let createGuest = (guestObj)=>{
     return $q((resolve, reject)=>{
-      $http.post(`${FirebaseURL}/guest.json`, JSON.stringify(guestObj))
+      $http.post(`${FirebaseURL}/guests.json`, JSON.stringify(guestObj))
       .success((guestData)=>{
         resolve(guestData);
       })

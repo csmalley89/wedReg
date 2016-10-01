@@ -49,11 +49,11 @@ app.controller("LoginCtrl", function($scope, AuthFactory, RegistryFactory, $rout
         let memberObj = {
           uid: AuthFactory.getUserId(),
           registryId: registryId,
-          role: 'couple',
+          role: 'couple'
         }
         MemberFactory.addMember(memberObj)
         if (registryData) {
-          $window.location.href = "#/findcouple";
+          $window.location.href = "#/registry/addgifts";
         } else {
           $window.location.href = "#/";
         }
@@ -75,55 +75,21 @@ app.controller("LoginCtrl", function($scope, AuthFactory, RegistryFactory, $rout
         uid: userData.uid,
       }
       AuthFactory.saveUserToFirebase(userObj)
-      RegistryFactory.createGuest($scope.registry)
+      RegistryFactory.createGuest($scope.guests)
       .then((guestData)=>{
-        registryId = guestData.name;
+        guestId = guestData.name;
         let memberObj = {
           uid: AuthFactory.getUserId(),
           registryId: null,
-          guestId: guestId
-          role: 'guest',
+          guestId: guestId,
+          role: 'guest'
         }
         MemberFactory.addMember(memberObj)
         if (guestData) {
-          $window.location.href = "#/registry/addgifts";
+          $window.location.href = "#/findcouple";
         } else {
           $window.location.href = "#/";
         }
-      })
-    }, (error)=>{
-      console.log(`Error creating user ${error}`);
-    });
-  };
-  $scope.guestRegister = ()=>{
-    AuthFactory.createUser({
-      email: $scope.account.email,
-      password: $scope.account.password
-    })
-    RegistryFactory.createGuest($scope.guest)
-    .then((guestData)=>{
-      guestId = guestData.city.replace('"', "");
-      let memberObj = {
-        uid: AuthFactory.getUserId(),
-        role: 'guest',
-        guestId: guestId,
-        registryId: null
-      }
-    MemberFactory.addMember(memberObj)
-    })
-    .then((userData)=>{
-      console.log("user data", userData);
-      if (userData){
-        $scope.login();
-      }
-      let userObj = {
-        email: userData.email,
-        uid: userData.uid,
-        displayName: $scope.account.email
-      }
-      AuthFactory.saveUserToFirebase(userObj)
-      .then(()=>{
-        console.log("successfully saved user!");
       })
     }, (error)=>{
       console.log(`Error creating user ${error}`);
