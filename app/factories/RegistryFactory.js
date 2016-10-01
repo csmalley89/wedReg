@@ -74,13 +74,33 @@ app.factory("RegistryFactory", ($q, $http, FirebaseURL, AuthFactory, GiftFactory
     });
   };
 
-  let getRegistryList = (registryData)=>{
-    return $q((resolve, reject)=>{
+  // let getRegistryList = (registryData)=>{
+  //   return $q((resolve, reject)=>{
+  //     $http.get(`${FirebaseURL}/registries.json`)
+  //     .success((registryData)=>{
+  //       resolve(registryData);
+  //     })
+  //     .error((error)=>{
+  //       reject(error);
+  //     });
+  //   });
+  // };
+  let getRegistryList = (registry) => {
+    let registries = [];
+    return $q((resolve, reject) => {
       $http.get(`${FirebaseURL}/registries.json`)
-      .success((registryData)=>{
-        resolve(registryData);
+      .success((registryData) => {
+        if (registryData !== null) {
+        Object.keys(registryData).forEach((key) => {
+          registryData[key].id = key;
+          registries.push(registryData[key]);
+        });
+        resolve(registries);
+      } else {
+        resolve(registries);
+      }
       })
-      .error((error)=>{
+      .error((error) => {
         reject(error);
       });
     });
