@@ -73,6 +73,7 @@ app.controller('UserTypeCtrl', function($scope, AuthFactory, RegistryFactory, $r
           role: 'guest',
           registryId: null
         }
+        return MemberFactory.addMember(memberObj)
       })
       .then((success)=>{
         console.log("member created successfully");

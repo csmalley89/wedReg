@@ -1,17 +1,115 @@
 "use strict";
 
-app.controller("LoginCtrl", function($scope, AuthFactory, $window){
+app.controller("LoginCtrl", function($scope, AuthFactory, RegistryFactory, $route, $window, MemberFactory){
+  let registryId,
+      guestId,
+      userId;
 
   $scope.account = {
     email: "",
     password: ""
   };
+  $scope.registry = {
+    firstName1: "",
+    lastName1: "",
+    firstName2: "",
+    lastName2: "",
+    WeddingDate:"",
+    location: "",
+    coupleStreet: "",
+    coupleCity: "",
+    coupleState: "",
+    coupleZip: ""
+  };
+  $scope.guest = {
+    firstName: "",
+    lastName: "",
+    street: "",
+    city: "",
+    state: "",
+    zip: ""
+  };
 
-  $scope.register = ()=>{
+
+  $scope.coupleRegister = ()=>{
     console.log("You clicked register!");
     AuthFactory.createUser({
       email: $scope.account.email,
       password: $scope.account.password
+    })
+    .then((userData)=>{
+      let userObj = {
+        email: userData.email,
+        uid: userData.uid,
+      }
+      AuthFactory.saveUserToFirebase(userObj)
+      RegistryFactory.createRegistry($scope.registry)
+      .then((registryData)=>{
+        registryId = registryData.name;
+        let memberObj = {
+          uid: AuthFactory.getUserId(),
+          registryId: registryId,
+          role: 'couple',
+        }
+        MemberFactory.addMember(memberObj)
+        if (registryData) {
+          $window.location.href = "#/findcouple";
+        } else {
+          $window.location.href = "#/";
+        }
+      })
+    }, (error)=>{
+      console.log(`Error creating user ${error}`);
+    });
+  };
+
+  $scope.guestRegister = ()=>{
+    console.log("You clicked register!");
+    AuthFactory.createUser({
+      email: $scope.account.email,
+      password: $scope.account.password
+    })
+    .then((userData)=>{
+      let userObj = {
+        email: userData.email,
+        uid: userData.uid,
+      }
+      AuthFactory.saveUserToFirebase(userObj)
+      RegistryFactory.createGuest($scope.registry)
+      .then((guestData)=>{
+        registryId = guestData.name;
+        let memberObj = {
+          uid: AuthFactory.getUserId(),
+          registryId: null,
+          guestId: guestId
+          role: 'guest',
+        }
+        MemberFactory.addMember(memberObj)
+        if (guestData) {
+          $window.location.href = "#/registry/addgifts";
+        } else {
+          $window.location.href = "#/";
+        }
+      })
+    }, (error)=>{
+      console.log(`Error creating user ${error}`);
+    });
+  };
+  $scope.guestRegister = ()=>{
+    AuthFactory.createUser({
+      email: $scope.account.email,
+      password: $scope.account.password
+    })
+    RegistryFactory.createGuest($scope.guest)
+    .then((guestData)=>{
+      guestId = guestData.city.replace('"', "");
+      let memberObj = {
+        uid: AuthFactory.getUserId(),
+        role: 'guest',
+        guestId: guestId,
+        registryId: null
+      }
+    MemberFactory.addMember(memberObj)
     })
     .then((userData)=>{
       console.log("user data", userData);

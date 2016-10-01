@@ -19,12 +19,12 @@ let isAuth = (AuthFactory)=> new Promise((resolve, reject)=>{
 app.config(function($routeProvider){
   $routeProvider
   .when('/', {
-    templateUrl: 'partials/launch2.html',
+    templateUrl: 'partials/launch.html',
     controller: 'LoginCtrl'
   })
-  .when('/launch', {
-    templateUrl: 'partials/postReg.html',
-    controller: 'UserTypeCtrl',
+  .when('/findcouple', {
+    templateUrl: 'partials/guest-home.html',
+    controller: 'GuestJoinCtrl',
     resolve: {isAuth}
   })
   .when('/registry/addgifts', {
@@ -34,7 +34,7 @@ app.config(function($routeProvider){
   })
   .when('/registry/:registryId', {
     templateUrl: 'partials/coupleViewItems.html',
-    controller: 'RegistryCtrl',
+    controller: 'GiftCtrl',
     resolve: {isAuth}
   })
   .otherwise('/');

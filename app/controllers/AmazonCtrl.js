@@ -1,5 +1,5 @@
 "use strict";
-app.controller('AmazonCtrl', function($scope, AmazonFactory, AuthFactory, ItemToRegister, GiftModal) {
+app.controller('AmazonCtrl', function($scope, $routeParams, AmazonFactory, AuthFactory, MemberFactory, RegistryFactory, ItemToRegister, GiftModal) {
   // Assures user only see their registered info
   // $scope.$parent.getUser()
   // .then ( (user) => {
@@ -10,15 +10,34 @@ app.controller('AmazonCtrl', function($scope, AmazonFactory, AuthFactory, ItemTo
   //   });
   // })
   // .catch(() => console.error);
-  let userId = $scope.userId
-  AuthFactory.getUserId($scope.userId);
+  function getRegistries (){
+    let registries = [];
+    MemberFactory.getMembers(AuthFactory.getUserId())
+    .then((memberData)=>{
+      Object.keys(memberData).forEach((key)=>{
+        let registryId = memberData[key].registryId
+        RegistryFactory.getSingleRegistry(registryId)
+        .then((registryData)=>{
+          if (registryData){
+            registryData.id = registryId;
+            registries.push(registryData);
+          }
+        });
+      });
+      $scope.registries = registries;
+    });
+  }
+  getRegistries();
+
+  // let userId = $scope.userId
+  // AuthFactory.getUserId($scope.userId);
 
   // Bound to input to assist amazon search
   $scope.amazonSearchTerm = "";
   $scope.itemCollection = [];
 
   // Searches amazon and returns results in array
-  $scope.searchAmazon = function(userId) {
+  $scope.searchAmazon = function() {
     AmazonFactory.getItemInfo($scope.amazonSearchTerm).then(function(itemData) {
       itemData = $.parseXML(itemData);
       let items = itemData.getElementsByTagName("Item");
@@ -28,7 +47,7 @@ app.controller('AmazonCtrl', function($scope, AmazonFactory, AuthFactory, ItemTo
         let currentItem = items[item];
         let formattedItem = {};
         if (typeof currentItem === "object") {
-          formattedItem.uid = $scope.userId;
+          formattedItem.registryId = $routeParams.registryId;
           formattedItem.link = currentItem.getElementsByTagName("DetailPageURL")[0].innerHTML;
           formattedItem.image = currentItem.getElementsByTagName("LargeImage")[0].getElementsByTagName("URL")[0].innerHTML;
           formattedItem.title = currentItem.getElementsByTagName("ItemAttributes")[0].getElementsByTagName('Title')[0].innerHTML;

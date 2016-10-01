@@ -32,10 +32,6 @@ app.controller('RegistryCtrl', function($scope, $routeParams, RegistryFactory, $
       $scope.$watch('gifts', function handleGiftIndexChange(newValue, oldValue) {
         GiftFactory.updateAllGiftsInView($scope.gifts);
       }, true);
-      $scope.$watch('gifts.dayId', function handleGiftIndexChange(newValue, oldValue) {
-        console.log('newValue', newValue);
-        // GiftFactory.updateAllGiftsInView($scope.gifts);
-      }, true);
     });
   }
 

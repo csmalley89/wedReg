@@ -74,11 +74,11 @@ app.factory("RegistryFactory", ($q, $http, FirebaseURL, AuthFactory, GiftFactory
     });
   };
 
-  let deleteTrailFromRegistry = (trailId)=>{
+  let getRegistryList = (registryData)=>{
     return $q((resolve, reject)=>{
-      $http.delete(`${FirebaseURL}/trails/${trailId}.json`)
-      .success((trailData)=>{
-        resolve(trailData);
+      $http.get(`${FirebaseURL}/registries.json`)
+      .success((registryData)=>{
+        resolve(registryData);
       })
       .error((error)=>{
         reject(error);
@@ -86,77 +86,6 @@ app.factory("RegistryFactory", ($q, $http, FirebaseURL, AuthFactory, GiftFactory
     });
   };
 
-  let getAverageTemp = (monthId)=>{
-    return $q((resolve, reject)=>{
-      $http.get(`${FirebaseURL}/temperature.json?orderBy="monthId"&equalTo="${monthId}"`)
-      .success((tempData)=>{
-        resolve(tempData);
-      })
-      .error((error)=>{
-        reject(error);
-      });
-    });
-  };
-
-  let getPackingList = (type)=>{
-    return $q((resolve, reject)=>{
-      $http.get(`${FirebaseURL}/packingseason.json?orderBy="type"&equalTo="${type}"`)
-      .success((packingData)=>{
-        resolve(packingData);
-      })
-      .error((error)=>{
-        reject(error);
-      });
-    });
-  };
-
-  let getUserPackingList = (registryId)=>{
-    return $q((resolve, reject)=>{
-      $http.get(`${FirebaseURL}/packinglist.json?orderBy="registryId"&equalTo="${registryId}"`)
-      .success((packingData)=>{
-        resolve(packingData);
-      })
-      .error((error)=>{
-        reject(error);
-      });
-    });
-  };
-
-  let addItemToPackingList = (packingItemObj)=>{
-    return $q((resolve, reject)=>{
-      $http.post(`${FirebaseURL}/packinglist.json`, JSON.stringify(packingItemObj))
-      .success((packingData)=>{
-        resolve(packingData);
-      })
-      .error((error)=>{
-        reject(error);
-      });
-    });
-  };
-
-  let deleteItemFromList = (listId)=>{
-    return $q((resolve, reject)=>{
-      $http.delete(`${FirebaseURL}/packinglist/${listId}.json`)
-      .success((packingData)=>{
-        resolve(packingData);
-      })
-      .error((error)=>{
-        reject(error);
-      });
-    });
-  };
-
-  let updatePackingItem = (packingObj, itemId)=>{
-    return $q((resolve, reject)=>{
-      $http.patch(`${FirebaseURL}/packinglist/${itemId}.json`, JSON.stringify(packingObj))
-      .success((packingData)=>{
-        resolve(packingData);
-      })
-      .error((error)=>{
-        reject(error);
-      });
-    });
-  };
 
   let createInvitation = (invitation)=>{
     return $q((resolve, reject)=>{
@@ -206,5 +135,5 @@ app.factory("RegistryFactory", ($q, $http, FirebaseURL, AuthFactory, GiftFactory
     });
   };
 
-  return {createRegistry, createGuest, deleteRegistry, getSingleRegistry, deleteTrailFromRegistry, updateRegistry, getAverageTemp, getPackingList, addItemToPackingList, getUserPackingList, deleteItemFromList, updatePackingItem, createInvitation, getInvitations, deleteInvitation, addRegistryToUser, getInvitationsInRegistry};
+  return {createRegistry, createGuest, deleteRegistry, getSingleRegistry, updateRegistry, getRegistryList, createInvitation, getInvitations, deleteInvitation, addRegistryToUser, getInvitationsInRegistry};
 });
