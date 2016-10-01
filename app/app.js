@@ -27,12 +27,12 @@ app.config(function($routeProvider){
     controller: 'GuestJoinCtrl',
     resolve: {isAuth}
   })
-  .when('/registry/addgifts', {
+  .when('/registry/addgifts/:registryId', {
     templateUrl: 'partials/couple-home.html',
     controller: 'AmazonCtrl',
     resolve: {isAuth}
   })
-  .when('/registry/:registryId', {
+  .when('/registry/viewgifts/:registryId', {
     templateUrl: 'partials/coupleViewItems.html',
     controller: 'GiftCtrl',
     resolve: {isAuth}

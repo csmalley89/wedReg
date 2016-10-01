@@ -53,7 +53,7 @@ app.controller("LoginCtrl", function($scope, AuthFactory, RegistryFactory, $rout
         }
         MemberFactory.addMember(memberObj)
         if (registryData) {
-          $window.location.href = "#/registry/addgifts";
+          $window.location.href = "#/registry/addgifts/:registryId";
         } else {
           $window.location.href = "#/";
         }
@@ -125,7 +125,7 @@ app.controller("LoginCtrl", function($scope, AuthFactory, RegistryFactory, $rout
         Object.keys(members).forEach((key)=>{
           if (members[key].role === "couple" && currentUserId === members[key].uid) {
             let userRole = members[key].role;
-            $window.location.href = '#/registry/addgifts';
+            $window.location.href = '#/registry/addgifts/:registryId';
             console.log(members[key].uid)
             console.log(members[key].role)
             console.log(userRole)

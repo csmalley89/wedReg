@@ -5,8 +5,8 @@ app.controller("NavCtrl", function($scope, AuthFactory, RegistryFactory, $window
   $scope.navItems = [
       {url: "#/logout", name: "Logout", showState: "$parent.isLoggedIn"},
       {url: "#/login", name: "Login", showState: "!$parent.isLoggedIn"},
-      {url: "#/registry/addgifts", name: "Add to Registry", showState: "$parent.isLoggedIn"},
-      {url: "#/registry/:registryId", name: "View Registry", showState: "$parent.isLoggedIn"}
+      {url: "#/registry/addgifts/:registryId", name: "Add to Registry", showState: "$parent.isLoggedIn"},
+      {url: "#/registry/viewgifts/:registryId", name: "View Registry", showState: "$parent.isLoggedIn"}
   ];
   $scope.isActive = (viewLocation) => viewLocation === $location.path();
 

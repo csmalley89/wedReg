@@ -1,36 +1,44 @@
 "use strict";
-app.controller('AmazonCtrl', function($scope, $routeParams, AmazonFactory, AuthFactory, MemberFactory, RegistryFactory, ItemToRegister, GiftModal) {
+app.controller('AmazonCtrl', function($scope, $routeParams, $q, AmazonFactory, AuthFactory, MemberFactory, RegistryFactory, ItemToRegister, GiftModal, GiftFactory) {
   // Assures user only see their registered info
-  // $scope.$parent.getUser()
-  // .then ( (user) => {
-  //   $scope.userId = user;
-  //   RegFactory.getSingleCouple($scope.userId)
-  //   .then((couplesCollectionArr) => {
-  //     $scope.couples = couplesCollectionArr[0];
-  //   });
-  // })
-  // .catch(() => console.error);
-  function getRegistries (){
-    let registries = [];
-    MemberFactory.getMembers(AuthFactory.getUserId())
-    .then((memberData)=>{
-      Object.keys(memberData).forEach((key)=>{
-        let registryId = memberData[key].registryId
-        RegistryFactory.getSingleRegistry(registryId)
-        .then((registryData)=>{
-          if (registryData){
-            registryData.id = registryId;
-            registries.push(registryData);
-          }
-        });
-      });
-      $scope.registries = registries;
-    });
-  }
-  getRegistries();
+    // let userRole;
+    function getRegistryInfo (){
+      let UserId = AuthFactory.getUserId()
+      console.log(AuthFactory.getUserId())
+      let registryId;
+      MemberFactory.getMembers()
+      .then((registryId)=>{
+        if(registryId){
+          Object.keys(registryId).forEach((key)=>{
+            if (registryId[key].uid === UserId) {
+              console.log(registryId[key].registryId)
+              $scope.registryId = registryId[key].registryId
+              let regDataArr = []
+              RegistryFactory.getSingleRegistry($scope.registryId)
+              .then((regData)=>{
+                if (regData !== null) {
+                Object.keys(regData).forEach((key) => {
+                  regData[key] = key;
+                  regDataArr.push(regData[key]);
+                })
+                $scope.regDataArr = regDataArr;
+                console.log(regDataArr)
+                };
+              })
+            }
+          })
+        }
+      })
+    }
+    getRegistryInfo();
+    console.log(getRegistryInfo())
 
-  // let userId = $scope.userId
-  // AuthFactory.getUserId($scope.userId);
+
+
+
+
+
+
 
   // Bound to input to assist amazon search
   $scope.amazonSearchTerm = "";
