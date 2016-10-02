@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("GuestJoinCtrl", function($scope, RegistryFactory, AuthFactory, SearchTermData) {
+app.controller("GuestJoinCtrl", function($scope, RegistryFactory, AuthFactory, MemberFactory, SearchTermData) {
   $scope.searchText = SearchTermData;
 
   // let user = AuthFactory.getUserId();
@@ -21,10 +21,12 @@ app.controller("GuestJoinCtrl", function($scope, RegistryFactory, AuthFactory, S
           registries.push(registryData[key]);
         });
         $scope.registries = registries;
-      };
+        console.log(registries);
+      }
     })
   }
   getRegistries();
+
 
 
 });

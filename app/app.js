@@ -27,7 +27,7 @@ app.config(function($routeProvider){
     controller: 'GuestJoinCtrl',
     resolve: {isAuth}
   })
-  .when('/registry/addgifts/:registryId', {
+  .when('/registry/addgifts', {
     templateUrl: 'partials/couple-home.html',
     controller: 'AmazonCtrl',
     resolve: {isAuth}
@@ -35,6 +35,11 @@ app.config(function($routeProvider){
   .when('/registry/viewgifts/:registryId', {
     templateUrl: 'partials/coupleViewItems.html',
     controller: 'GiftCtrl',
+    resolve: {isAuth}
+  })
+  .when('/registry/test', {
+    templateUrl: 'partials/couplebanner.html',
+    controller: 'TestCtrl',
     resolve: {isAuth}
   })
   .otherwise('/');

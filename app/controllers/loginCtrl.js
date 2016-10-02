@@ -41,19 +41,30 @@ app.controller("LoginCtrl", function($scope, AuthFactory, RegistryFactory, $rout
       let userObj = {
         email: userData.email,
         uid: userData.uid,
+        firstName: $scope.registry.firstName1,
+        lastName: $scope.registry.lastName1,
+        firstName2: $scope.registry.firstName2,
+        lastName2: $scope.registry.lastName2,
+        WeddingDate: $scope.registry.WeddingDate,
+        location: $scope.registry.location,
+        coupleStreet: $scope.registry.coupleStreet,
+        coupleCity: $scope.registry.coupleCity,
+        coupleState: $scope.registry.coupleState,
+        coupleZip: $scope.registry.coupleZip
       }
       AuthFactory.saveUserToFirebase(userObj)
       RegistryFactory.createRegistry($scope.registry)
       .then((registryData)=>{
-        registryId = registryData.name;
+        $scope.registry.uid = registryData.uid;
+        // registryId = registryData.name;
         let memberObj = {
           uid: AuthFactory.getUserId(),
-          registryId: registryId,
+          registryId: registryData.name,
           role: 'couple'
         }
         MemberFactory.addMember(memberObj)
         if (registryData) {
-          $window.location.href = "#/registry/addgifts/:registryId";
+          $window.location.href = "#/registry/addgifts";
         } else {
           $window.location.href = "#/";
         }
@@ -73,6 +84,12 @@ app.controller("LoginCtrl", function($scope, AuthFactory, RegistryFactory, $rout
       let userObj = {
         email: userData.email,
         uid: userData.uid,
+        firstName: $scope.guest.firstName,
+        lastName: $scope.guest.lastName,
+        guestStreet: $scope.guest.street,
+        guestCity: $scope.guest.city,
+        guestState: $scope.guest.state,
+        guestZip: $scope.guest.zip
       }
       AuthFactory.saveUserToFirebase(userObj)
       RegistryFactory.createGuest($scope.guest)
@@ -125,7 +142,7 @@ app.controller("LoginCtrl", function($scope, AuthFactory, RegistryFactory, $rout
         Object.keys(members).forEach((key)=>{
           if (members[key].role === "couple" && currentUserId === members[key].uid) {
             let userRole = members[key].role;
-            $window.location.href = '#/registry/addgifts/:registryId';
+            $window.location.href = '#/registry/addgifts/';
             console.log(members[key].uid)
             console.log(members[key].role)
             console.log(userRole)

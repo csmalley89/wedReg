@@ -2,20 +2,23 @@
   <div class="section no-pad-bot">
     <div class="container">
       <br><br>
-      <h2 class="header center pink-text text-accent-1">{{registries.firstName1}} &#38 {{registries.firstName2}}</h2>
+      <h2 class="header center pink-text text-accent-1">{{registry.firstName1}} &#38 {{registry.firstName2}}</h2>
       <div class="row center">
-        <h5 class="header col s12 light">{{registries.WeddingDate}} | {{registries.location}}</h5>
-        <h5 class="header col s12 light"><span countdown end-date="{{registries.WeddingDate}}" units="days"></span> to go!</h5>
+        <h5 class="header col s12 light">{{registry.WeddingDate}} | {{registry.location}}</h5>
+        <h5 class="header col s12 light"><span countdown end-date="{{registry.WeddingDate}}" units="days"></span> to go!</h5>
       </div>
       <div class="row">
         <div class="col s6 offset-s3">
           <span>
-            <input ng-model="searchText.search" type="text" autofocus placeholder="Search Registered Items" class="white teal-text">
-<!--             <a ng-click="getItemList()" class="btn waves-effect waves-light teal lighten-1">Search</a> -->
+            <input ng-model="amazonSearchTerm" type="text" autofocus placeholder="Search Amazon.com" class="white teal-text">
+            <a class="btn waves-effect waves-light teal lighten-1" ng-click="searchAmazon(); amazonSearchTerm = ''">Search</a>
           </span>
         </div>
+<!--         <div class="col s1">
+        </div> -->
       </div>
     </div>
   </div>
   <div class="parallax" parallax><img src="img/weddingbanner.png"></div>
+</div>
 </div>
