@@ -108,9 +108,9 @@ app.factory("RegistryFactory", ($q, $http, FirebaseURL, AuthFactory, GiftFactory
   // };
 
 
-  let createInvitation = (invitation)=>{
+  let createContribution = (contribution)=>{
     return $q((resolve, reject)=>{
-      $http.post(`${FirebaseURL}/invitations.json`, angular.toJson(invitation))
+      $http.post(`${FirebaseURL}/contributions.json`, angular.toJson(contribution))
       .success((invite)=>{
         resolve(invite);
       })
@@ -120,11 +120,11 @@ app.factory("RegistryFactory", ($q, $http, FirebaseURL, AuthFactory, GiftFactory
     });
   };
 
-  let getInvitations = ()=>{
+  let getContributions = ()=>{
     return $q((resolve, reject)=>{
-      $http.get(`${FirebaseURL}/invitations.json?orderBy="uid"&equalTo="${AuthFactory.getUserId()}"`)
-      .success((invitations)=>{
-        resolve(invitations);
+      $http.get(`${FirebaseURL}/contributions.json?orderBy="uid"&equalTo="${AuthFactory.getUserId()}"`)
+      .success((contributions)=>{
+        resolve(contributions);
       })
       .error((error)=>{
         reject(error);
@@ -132,11 +132,11 @@ app.factory("RegistryFactory", ($q, $http, FirebaseURL, AuthFactory, GiftFactory
     });
   };
 
-   let getInvitationsInRegistry = (registryId)=>{
+   let getContributionsInRegistry = (registryId)=>{
     return $q((resolve, reject)=>{
-      $http.get(`${FirebaseURL}/invitations.json?orderBy="registryId"&equalTo="${registryId}"`)
-      .success((invitations)=>{
-        resolve(invitations);
+      $http.get(`${FirebaseURL}/contributions.json?orderBy="registryId"&equalTo="${registryId}"`)
+      .success((contributions)=>{
+        resolve(contributions);
       })
       .error((error)=>{
         reject(error);
@@ -144,11 +144,11 @@ app.factory("RegistryFactory", ($q, $http, FirebaseURL, AuthFactory, GiftFactory
     });
   };
 
-  let deleteInvitation = (invitationId)=>{
+  let deleteContribution = (contributionId)=>{
     return $q((resolve, reject)=>{
-      $http.delete(`${FirebaseURL}/invitations/${invitationId}.json`)
-      .success((invitationDelete)=>{
-        resolve(invitationDelete);
+      $http.delete(`${FirebaseURL}/contributions/${contributionId}.json`)
+      .success((contributionDelete)=>{
+        resolve(contributionDelete);
       })
       .error((error)=>{
         reject(error);
@@ -156,5 +156,5 @@ app.factory("RegistryFactory", ($q, $http, FirebaseURL, AuthFactory, GiftFactory
     });
   };
 
-  return {createRegistry, createGuest, deleteRegistry, getSingleRegistry, updateRegistry, getRegistryList, createInvitation, getInvitations, deleteInvitation, addRegistryToUser, getInvitationsInRegistry};
+  return {createRegistry, createGuest, deleteRegistry, getSingleRegistry, updateRegistry, getRegistryList, createContribution, getContributions, deleteContribution, addRegistryToUser, getContributionsInRegistry};
 });

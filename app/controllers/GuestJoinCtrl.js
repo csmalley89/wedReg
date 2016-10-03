@@ -21,6 +21,10 @@ app.controller("GuestJoinCtrl", function($scope, RegistryFactory, $routeParams, 
   }
   getRegistries();
 
+  // function getCurrentMemberRegistries (){
+
+  // }
+
 
   $scope.joinRegistry = (event, registry, index)=> {
     $scope.joinedRegistry = true;
@@ -41,7 +45,7 @@ app.controller("GuestJoinCtrl", function($scope, RegistryFactory, $routeParams, 
       }
       MemberFactory.addMember(memberObj)
       if(userData){
-        $window.location.href = "#/registry/guest/view"
+        $window.location.href = `#/registry/guest/${registry.id}`
       }
     }, (error)=>{
       console.log(`Error joining registry ${error}`)
@@ -52,7 +56,7 @@ app.controller("GuestJoinCtrl", function($scope, RegistryFactory, $routeParams, 
 
 "use strict";
 
-app.controller("GuestViewRegistryCtrl", function($scope, AuthFactory, MemberFactory, GiftFactory, SearchTermData) {
+app.controller("GuestViewRegistryCtrl", function($scope, $routeParams, AuthFactory, MemberFactory, GiftFactory, SearchTermData) {
   $scope.searchText = SearchTermData;
   function getJoinedRegistry (){
     let UserId = AuthFactory.getUserId()
@@ -66,7 +70,7 @@ app.controller("GuestViewRegistryCtrl", function($scope, AuthFactory, MemberFact
             console.log(registryId[key].registryId)
             $scope.registryId = registryId[key].registryId
 
-            GiftFactory.getGifts($scope.registryId)
+            GiftFactory.getGifts($routeParams.registryId)
             .then((giftData)=>{
               console.log("giftData", giftData);
               $scope.gifts = giftData;

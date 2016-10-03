@@ -43,7 +43,7 @@ app.config(function($routeProvider){
     controller: 'TestCtrl',
     resolve: {isAuth}
   })
-  .when('/registry/guest/view', {
+  .when('/registry/guest/:registryId', {
     templateUrl: 'partials/guest-registry.html',
     controller: 'GuestViewRegistryCtrl',
     resolve: {isAuth}

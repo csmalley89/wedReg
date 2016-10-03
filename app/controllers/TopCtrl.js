@@ -6,28 +6,28 @@ app.controller("TopCtrl", function($scope, $window, $route, AuthFactory){
 
   let DATABASEREF = firebase.database().ref();
   DATABASEREF.on("value", (snapshot)=>{
-    // let invitations = snapshot.val().invitations;
-    // console.log("invitations changed", invitations)
-    // $scope.numberOfInvitations = '';
-    // if (invitations){
-    //   console.log("you have invitations");
-    //   $scope.numberOfInvitations = Object.keys(invitations).length;
-    //   Object.keys(invitations).forEach((key)=>{
+    // let contributions = snapshot.val().contributions;
+    // console.log("contributions changed", contributions)
+    // $scope.numberOfContributions = '';
+    // if (contributions){
+    //   console.log("you have contributions");
+    //   $scope.numberOfContributions = Object.keys(contributions).length;
+    //   Object.keys(contributions).forEach((key)=>{
     //     let userId = AuthFactory.getUserId();
-    //     if (invitations[key].uid === userId){
-    //       $scope.hasInvitations = true;
+    //     if (contributions[key].uid === userId){
+    //       $scope.hasContributions = true;
     //       $scope.$apply();
     //     }
     //   else {
-    //     console.log("none of the invitations are for you");
-    //     $scope.hasInvitations = false;
-    //     $scope.numberOfInvitations = 0;
+    //     console.log("none of the contributions are for you");
+    //     $scope.hasContributions = false;
+    //     $scope.numberOfContributions = 0;
     //     $scope.$apply();
     //   }
     //   })
     // } else {
-    //   console.log("no invitations");
-    //   $scope.hasInvitations = false;
+    //   console.log("no contributions");
+    //   $scope.hasContributions = false;
     // }
     let members = snapshot.val().members;
     if (members){

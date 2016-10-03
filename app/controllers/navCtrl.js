@@ -17,7 +17,7 @@ app.controller("NavCtrl", function($scope, AuthFactory, RegistryFactory, $window
   firebase.auth().onAuthStateChanged(function(user){
     if (user){
       getRegistries();
-      // getInvitations();
+      // getContributions();
       AuthFactory.getUser(AuthFactory.getUserId())
       .then((userData)=>{
         Object.keys(userData).forEach((key)=>{
@@ -27,49 +27,49 @@ app.controller("NavCtrl", function($scope, AuthFactory, RegistryFactory, $window
     }
   });
 
-  //We cannot grab the invitations for a user if the webpage does not recognize that a user is logged in. Therefore, we need to watch the state - isReady to make sure it is true before checking for notifications. We also want to watch the length of the notifications
+  //We cannot grab the contributions for a user if the webpage does not recognize that a user is logged in. Therefore, we need to watch the state - isReady to make sure it is true before checking for notifications. We also want to watch the length of the notifications
   // $scope.$watch('isReady', function isReadyChange(newValue, oldValue) {
   //   console.log("new value", newValue);
   //   if ($scope.isReady){
-  //     getInvitations();
+  //     getContributions();
   //     // getRegistries();
-  //     $scope.$watch('numberOfInvitations', function numberOfInvitationsChange(newValue, oldValue) {
+  //     $scope.$watch('numberOfContributions', function numberOfContributionsChange(newValue, oldValue) {
   //       console.log("new value, oldValue", newValue, oldValue)
-  //       getInvitations();
+  //       getContributions();
   //     }, true);
   //   }
   // }, true);
 
 
-  // $scope.getInvitations = ()=>{
-  //   getInvitations();
+  // $scope.getContributions = ()=>{
+  //   getContributions();
   // };
 
-  // function getInvitations (){
-  //   let invitationsArr = [];
-  //   console.log("get invitations is running");
-  //   RegistryFactory.getInvitations()
-  //   .then((invitations)=>{
-  //     console.log("invitations to you", invitations);
-  //     if(Object.keys(invitations).length){
-  //       $scope.hasInvitations = true;
-  //       Object.keys(invitations).forEach((key)=>{
-  //         invitations[key].id = key;
-  //         invitationsArr.push(invitations[key]);
+  // function getContributions (){
+  //   let contributionsArr = [];
+  //   console.log("get contributions is running");
+  //   RegistryFactory.getContributions()
+  //   .then((contributions)=>{
+  //     console.log("contributions to you", contributions);
+  //     if(Object.keys(contributions).length){
+  //       $scope.hasContributions = true;
+  //       Object.keys(contributions).forEach((key)=>{
+  //         contributions[key].id = key;
+  //         contributionsArr.push(contributions[key]);
   //       })
-  //       $scope.invitations = invitations
+  //       $scope.contributions = contributions
   //     } else {
-  //       $scope.hasInvitations = false;
+  //       $scope.hasContributions = false;
   //     }
   //   });
   // }
 
-  // $scope.acceptOrDecline = (invitation)=>{
+  // $scope.acceptOrDecline = (contribution)=>{
   //   let modalInstance = $uibModal.open({
   //     templateUrl: 'partials/RespondToInviteModal.html',
   //     controller: 'RespondToInviteModalCtrl',
   //     resolve: {
-  //       invitation
+  //       contribution
   //     }
   //   });
   // }
