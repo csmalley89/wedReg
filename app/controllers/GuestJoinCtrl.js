@@ -48,6 +48,39 @@ app.controller("GuestJoinCtrl", function($scope, RegistryFactory, $routeParams, 
     })
 
   }
+});
+
+"use strict";
+
+app.controller("GuestViewRegistryCtrl", function($scope, AuthFactory, MemberFactory, GiftFactory, SearchTermData) {
+  $scope.searchText = SearchTermData;
+  function getJoinedRegistry (){
+    let UserId = AuthFactory.getUserId()
+    console.log(AuthFactory.getUserId())
+    let registryId;
+    MemberFactory.getMembers()
+    .then((registryId)=>{
+      if(registryId){
+        Object.keys(registryId).forEach((key)=>{
+          if (registryId[key].uid === UserId) {
+            console.log(registryId[key].registryId)
+            $scope.registryId = registryId[key].registryId
+
+            GiftFactory.getGifts($scope.registryId)
+            .then((giftData)=>{
+              console.log("giftData", giftData);
+              $scope.gifts = giftData;
+              $scope.$watch('gifts', function handleGiftIndexChange(newValue, oldValue) {
+                GiftFactory.updateAllGiftsInView($scope.gifts);
+              }, true);
+            });
+          }
+        })
+      }
+    })
+  }
+  getJoinedRegistry();
+
 
 
 

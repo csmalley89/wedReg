@@ -45,7 +45,7 @@ app.config(function($routeProvider){
   })
   .when('/registry/guest/view', {
     templateUrl: 'partials/guest-registry.html',
-    controller: 'RegistryCtrl',
+    controller: 'GuestViewRegistryCtrl',
     resolve: {isAuth}
   })
   .otherwise('/');

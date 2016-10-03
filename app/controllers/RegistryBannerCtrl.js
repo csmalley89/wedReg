@@ -20,3 +20,5 @@ app.controller("RegistryBannerCtrl", function($scope, AuthFactory, SearchTermDat
 
 
 });
+
+
