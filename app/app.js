@@ -3,7 +3,13 @@
 var app = angular.module("wedReg", ["ngRoute", "ui.materialize", "countdownTimer", "btford.modal", "dndLists"])
 .constant("FirebaseURL", "https://test2-3c837.firebaseio.com");
 
+app.config(($logProvider)=>{
+  $logProvider.debugEnabled(true);
+})
 
+app.run(function($rootScope, $log){
+  $rootScope.$log = $log;
+})
 
 
 let isAuth = (AuthFactory)=> new Promise((resolve, reject)=>{
@@ -32,14 +38,14 @@ app.config(function($routeProvider){
     controller: 'AmazonCtrl',
     resolve: {isAuth}
   })
-  .when('/registry/viewgifts/:registryId', {
+  .when('/registry/viewgifts/', {
     templateUrl: 'partials/coupleViewItems.html',
-    controller: 'GiftCtrl',
+    controller: 'TestCtrl',
     resolve: {isAuth}
   })
-  .when('/registry/test', {
-    templateUrl: 'partials/couplebanner.html',
-    controller: 'TestCtrl',
+  .when('/registry/guest/view', {
+    templateUrl: 'partials/guest-registry.html',
+    controller: 'RegistryCtrl',
     resolve: {isAuth}
   })
   .otherwise('/');

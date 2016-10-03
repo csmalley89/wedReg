@@ -55,16 +55,16 @@ app.controller("LoginCtrl", function($scope, AuthFactory, RegistryFactory, $rout
       AuthFactory.saveUserToFirebase(userObj)
       RegistryFactory.createRegistry($scope.registry)
       .then((registryData)=>{
-        $scope.registry.uid = registryData.uid;
-        // registryId = registryData.name;
+        // $scope.registry.uid = registryData.uid;
+        registryId = registryData.name;
         let memberObj = {
           uid: AuthFactory.getUserId(),
-          registryId: registryData.name,
+          registryId: registryId,
           role: 'couple'
         }
         MemberFactory.addMember(memberObj)
         if (registryData) {
-          $window.location.href = "#/registry/addgifts";
+          $window.location.href = "#/registry/addgifts/";
         } else {
           $window.location.href = "#/";
         }

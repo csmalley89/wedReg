@@ -14,18 +14,18 @@ app.factory("MemberFactory", ($q, $http, FirebaseURL)=>{
     });
   };
 
-  // let getMembers = (userId)=>{
-  //   return $q((resolve, reject)=>{
-  //     $http.get(`${FirebaseURL}/members.json?orderBy="uid"&equalTo="${userId}"`)
-  //     .success((memberData)=>{
-  //       resolve(memberData);
-  //     })
-  //     .error((error)=>{
-  //       reject(error);
-  //       console.log("error", error);
-  //     });
-  //   });
-  // };
+  let getMember = (userId)=>{
+    return $q((resolve, reject)=>{
+      $http.get(`${FirebaseURL}/members.json?orderBy="uid"&equalTo="${userId}"`)
+      .success((memberData)=>{
+        resolve(memberData);
+      })
+      .error((error)=>{
+        reject(error);
+        console.log("error", error);
+      });
+    });
+  };
 
   let getMembers = (userId)=>{
     return $q((resolve, reject)=>{
@@ -77,5 +77,5 @@ app.factory("MemberFactory", ($q, $http, FirebaseURL)=>{
     });
   };
 
-  return {addMember, getMembers, deleteMember, getMembersOfRegistry};
+  return {addMember, getMember, getMembers, deleteMember, getMembersOfRegistry};
 });

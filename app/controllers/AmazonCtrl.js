@@ -1,64 +1,5 @@
 "use strict";
 app.controller('AmazonCtrl', function($scope, AmazonFactory, AuthFactory, MemberFactory, RegistryFactory, ItemToRegister, GiftModal, GiftFactory) {
-  // Assures user only see their registered info
-    // let userRole;
-    // function getRegistryInfo (){
-    //   let UserId = AuthFactory.getUserId()
-    //   console.log(AuthFactory.getUserId())
-    //   let registryId;
-    //   MemberFactory.getMembers()
-    //   .then((registryId)=>{
-    //     if(registryId){
-    //       Object.keys(registryId).forEach((key)=>{
-    //         if (registryId[key].uid === UserId) {
-    //           console.log(registryId[key].registryId)
-    //           $scope.registryId = registryId[key].registryId
-    //           let regDataArr = []
-    //           RegistryFactory.getSingleRegistry($scope.registryId)
-    //           .then((regData)=>{
-    //             if (regData !== null) {
-    //               console.log(regData)
-    //             Object.keys(regData).forEach((key) => {
-    //               regData[key].id = key;
-    //               console.log(key)
-    //               regDataArr.push(regData[key]);
-    //             })
-    //             $scope.regDataArr = regDataArr;
-    //             console.log(regDataArr)
-    //             };
-    //           })
-    //         }
-    //       })
-    //     }
-    //   })
-    // }
-    // getRegistryInfo();
-
-//test 2
-
-    // function getRegistryInfo (){
-    //   let UserId = AuthFactory.getUserId()
-    //   console.log(AuthFactory.getUserId())
-    //   let registryId;
-    //   MemberFactory.getMembers()
-    //   .then((registryId)=>{
-    //     if(registryId){
-    //       Object.keys(registryId).forEach((key)=>{
-    //         if (registryId[key].uid === UserId) {
-    //           console.log(registryId[key].registryId)
-    //           $scope.registryId = registryId[key].registryId
-    //           RegistryFactory.getSingleRegistry($scope.registryId)
-    //           .then((registryCollection) => {
-    //             $scope.registryArr = registryCollection;
-    //           });
-    //         }
-    //       })
-    //     }
-    //   })
-    // }
-    // .catch(() => console.error)
-    // getRegistryInfo();
-
 
   let regDataArr = [];
     function getRegistryInfo (){
@@ -76,10 +17,11 @@ app.controller('AmazonCtrl', function($scope, AmazonFactory, AuthFactory, Member
               RegistryFactory.getSingleRegistry($scope.registryId)
               .then((regData)=>{
                 if (regData !== null) {
+                  // regData.id = registryId;
                   regDataArr.push(regData)
                 }
                 $scope.regDataArr = regDataArr[0]
-                console.log(regDataArr[0]);
+                console.log(regDataArr[0].location);
               })
             }
           })
@@ -105,6 +47,7 @@ app.controller('AmazonCtrl', function($scope, AmazonFactory, AuthFactory, Member
         let currentItem = items[item];
         let formattedItem = {};
         if (typeof currentItem === "object") {
+          formattedItem.registryId = $scope.registryId;
           formattedItem.link = currentItem.getElementsByTagName("DetailPageURL")[0].innerHTML;
           formattedItem.image = currentItem.getElementsByTagName("LargeImage")[0].getElementsByTagName("URL")[0].innerHTML;
           formattedItem.title = currentItem.getElementsByTagName("ItemAttributes")[0].getElementsByTagName('Title')[0].innerHTML;

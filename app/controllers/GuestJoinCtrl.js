@@ -1,19 +1,13 @@
 "use strict";
 
-app.controller("GuestJoinCtrl", function($scope, RegistryFactory, AuthFactory, MemberFactory, SearchTermData) {
+app.controller("GuestJoinCtrl", function($scope, RegistryFactory, $routeParams, $window, AuthFactory, MemberFactory, SearchTermData) {
   $scope.searchText = SearchTermData;
-
-  // let user = AuthFactory.getUserId();
-  //   console.log(user);
-  // RegistryFactory.getRegistryList(user)
-  // .then((registryCollection) => {
-  //   $scope.registries = registryCollection;
-  // });
+  $scope.joinedRegistry = false;
+  let registries = [];
 
 
   function getRegistries (){
-    let registries = [];
-      RegistryFactory.getRegistryList(AuthFactory.getUserId())
+    RegistryFactory.getRegistryList(AuthFactory.getUserId())
       .then((registryData)=>{
         if (registryData !== null) {
         Object.keys(registryData).forEach((key) => {
@@ -26,6 +20,34 @@ app.controller("GuestJoinCtrl", function($scope, RegistryFactory, AuthFactory, M
     })
   }
   getRegistries();
+
+
+  $scope.joinRegistry = (event, registry, index)=> {
+    $scope.joinedRegistry = true;
+    $scope.registries.splice(index, 1);
+    $(event.currentTarget).closest('.registryCard').remove();
+    $(event.currentTarget).remove();
+    AuthFactory.getUser(AuthFactory.getUserId())
+    .then((userData)=>{
+      Object.keys(userData).forEach((key)=>{
+        $scope.email = userData[key].email,
+        $scope.uid = userData[key].uid;
+      });
+      let memberObj = {
+        role: "guest",
+        uid: $scope.uid,
+        email: $scope.email,
+        registryId: registry.id
+      }
+      MemberFactory.addMember(memberObj)
+      if(userData){
+        $window.location.href = "#/registry/guest/view"
+      }
+    }, (error)=>{
+      console.log(`Error joining registry ${error}`)
+    })
+
+  }
 
 
 

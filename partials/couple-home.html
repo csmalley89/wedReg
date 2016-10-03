@@ -2,13 +2,19 @@
   <div class="section no-pad-bot">
     <div class="container">
       <br><br>
-      <div ng-controller="RegistryBannerCtrl">
+<!--       <div ng-controller="RegistryBannerCtrl">
         <h2 class="header center pink-text text-accent-1">{{bannerData.firstName}} &#38 {{bannerData.firstName2}}</h2>
         <div class="row center">
           <h5 class="header col s12 light">{{bannerData.WeddingDate}} | {{bannerData.location}}</h5>
           <h5 class="header col s12 light"><span countdown end-date="{{bannerData.WeddingDate}}" units="days"></span> to go!</h5>
         </div>
-      </div>
+      </div> -->
+        <h2 class="header center pink-text text-accent-1">{{regDataArr.firstName1}} &#38 {{regDataArr.firstName2}}</h2>
+        <div class="row center">
+          <h5 class="header col s12 light">{{regDataArr.WeddingDate}} | {{regDataArr.location}}</h5>
+          <h5 class="header col s12 light"><span countdown end-date="{{regDataArr.WeddingDate}}" units="days"></span> to go!</h5>
+        </div>
+
       <div class="row">
         <div class="col s6 offset-s3">
           <span>

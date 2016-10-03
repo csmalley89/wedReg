@@ -36,23 +36,23 @@ app.controller('RegistryCtrl', function($scope, $routeParams, RegistryFactory, $
   }
 
 
- $scope.addNote = (dayId)=>{
+ // $scope.addNote = (dayId)=>{
     //Need to create a noteObj to add to Firebase. Even though there is no text in this note the note instance needs to be added so that the user is updating the note when pressing enter rather than creating a whole new note everytime the enter key is pressed.
-    var noteObj = {
-      text: '',
-      registryId: $routeParams.registryId,
-      type: 'note'
-    };
+    // var noteObj = {
+    //   text: '',
+    //   registryId: $routeParams.registryId,
+    //   type: 'note'
+    // };
     //A new note needs to be added to $scope.notes so that the user sees a card show up on the screen. This instance of the note will be replaced with the note in firebase when the user navigates away from this page.
     //The note is added to firebase
-    GiftFactory.addGift(noteObj)
-    .then((note)=>{
-      console.log("added note!", note.name);
-        let newNote = noteObj;
-        newNote.id = note.name;
-        $scope.gifts.push(newNote);
-    });
-  };
+  //   GiftFactory.addGift(noteObj)
+  //   .then((note)=>{
+  //     console.log("added note!", note.name);
+  //       let newNote = noteObj;
+  //       newNote.id = note.name;
+  //       $scope.gifts.push(newNote);
+  //   });
+  // };
 
   RegistryFactory.getSingleRegistry($routeParams.registryId)
   .then((registryData)=>{

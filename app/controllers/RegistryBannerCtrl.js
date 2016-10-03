@@ -13,14 +13,10 @@ app.controller("RegistryBannerCtrl", function($scope, AuthFactory, SearchTermDat
           bannerData.push(coupleData[key]);
         });
         $scope.bannerData = bannerData[0];
-        console.log(bannerData);
-        console.log(bannerData[0].location)
-        console.log(bannerData.location)
       }
     })
   }
   getBannerData();
-
 
 
 });

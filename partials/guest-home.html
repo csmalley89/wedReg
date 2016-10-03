@@ -21,15 +21,14 @@
 <div class="container">
   <div class="row">
     <div ng-repeat="registry in registries | filter: searchText.search">
-      <div class="col s12 m4">
+      <div class="col s12 m4 registryCard">
         <div class="card-panel teal">
           <span class="pink-text text-accent-1"><h3>{{registry.firstName1}} &#38 {{registry.firstName2}}</h3>
           </span>
           <span class="white-text"><h4>{{registry.WeddingDate}} {{registry.location}}</h4>
           </span>
-
-<!-- need to build function that onclick saves guest to couples registry, then allows them to see their registered items -->
-          <a class="waves-effect white-text waves-pink btn-flat">Join Registry</a>
+          <a class="waves-effect white-text waves-pink btn-flat" ng-click="joinRegistry($event, registry, $index)">Join Registry</a>
+<!--           <a class="waves-effect white-text waves-pink btn-flat" ng-click="$log.debug($event, registry, $index)">Join Registry</a> -->
         </div>
       </div>
     </div>

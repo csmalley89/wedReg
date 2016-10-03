@@ -19,12 +19,8 @@ app.controller("GiftModalCtrl", function($scope, GiftModal, ItemToRegister, $rou
   $scope.itemToRegister = ItemToRegister.getItem();
 
   $scope.giftToSite = function(){
-    GiftFactory.addGift($scope.itemToRegister).then(function(user) {
+    GiftFactory.postNewItem($scope.itemToRegister).then(function(user) {
       $scope.closeModal();
-      // .then(function() {
-      //   let path = `{$routeParams.userId}/couple/welcome`;
-      //   $location.url(path);
-      // });
     });
 
   };

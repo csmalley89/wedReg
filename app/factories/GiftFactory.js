@@ -35,13 +35,13 @@ app.factory('GiftFactory', ($q, $http, FirebaseURL)=>{
     });
   }
 
-  let addGift = (giftObj)=>{
-    return $q((resolve, reject)=>{
-      $http.post(`${FirebaseURL}/gifts.json`, JSON.stringify(giftObj))
-      .success((giftData)=>{
-        resolve(giftData);
-      })
-      .error((error)=>{
+  let postNewItem = function(newItem){
+    return $q(function(resolve, reject){
+      $http.post(`${FirebaseURL}/gifts.json`,
+      newItem).success(function(objFromFirebase){
+        console.log("new item", newItem);
+        resolve(objFromFirebase);
+      }).error(function(error){
         reject(error);
       });
     });
@@ -68,5 +68,5 @@ app.factory('GiftFactory', ($q, $http, FirebaseURL)=>{
     );
   };
 
-  return {getGifts, addGift, updateGift, deleteGiftFromRegistry, updateAllGiftsInView};
+  return {getGifts, postNewItem, updateGift, deleteGiftFromRegistry, updateAllGiftsInView};
 });

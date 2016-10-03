@@ -51,40 +51,6 @@ app.factory("RegistryFactory", ($q, $http, FirebaseURL, AuthFactory, GiftFactory
   };
 
 
-//test 1
-  // let getSingleRegistry = (registryId)=>{
-  //   return $q((resolve, reject)=>{
-  //     $http.get(`${FirebaseURL}/registries.json?orderBy="uid"&equalTo="${registryId}"`)
-  //     .success((registryData)=>{
-  //       resolve(registryData);
-  //     })
-  //     .error((error)=>{
-  //       reject(error);
-  //     });
-  //   });
-  // };
-
-  // let getSingleRegistry = (registryId) => {
-  //   let registryArr = [];
-  //   return $q((resolve, reject) => {
-  //     $http.get(`${FirebaseURL}/registries/${registryId}.json`)
-  //     .success((registryData) => {
-  //       if (registryData !== null) {
-  //       Object.keys(registryData).forEach((key) => {
-  //         registryData[key].id = key;
-  //         registryArr.push(registryData[key]);
-  //       });
-  //       resolve(registryArr);
-  //     } else {
-  //       resolve(registryArr);
-  //     }
-  //     })
-  //     .error((error) => {
-  //       reject(error);
-  //     });
-  //   });
-  // };
-
   let deleteRegistry = (registryId)=>{
     return $q((resolve, reject)=>{
       $http.delete(`${FirebaseURL}/registries/${registryId}.json`)
