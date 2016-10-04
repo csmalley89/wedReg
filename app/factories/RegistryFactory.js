@@ -26,9 +26,20 @@ app.factory("RegistryFactory", ($q, $http, FirebaseURL, AuthFactory, GiftFactory
     });
   };
 
-  let addRegistryToUser = (userId, registryObj)=>{
+  // let addRegistryToUser = (userId, registryObj)=>{
+  //   return $q((resolve, reject)=>{
+  //     $http.patch(`${FirebaseURL}/users/${userId}/registries.json`, JSON.stringify(registryObj))
+  //     .success((registryData)=>{
+  //       resolve(registryData);
+  //     })
+  //     .error((error)=>{
+  //       reject(error);
+  //     });
+  //   });
+  // }
+  let addRegistryToUser = (userId, registryId)=>{
     return $q((resolve, reject)=>{
-      $http.patch(`${FirebaseURL}/users/${userId}/registries.json`, JSON.stringify(registryObj))
+      $http.patch(`${FirebaseURL}/users/${userId}/registryId.json`, JSON.stringify(registryId))
       .success((registryData)=>{
         resolve(registryData);
       })
@@ -37,6 +48,7 @@ app.factory("RegistryFactory", ($q, $http, FirebaseURL, AuthFactory, GiftFactory
       });
     });
   }
+
 //original version:
   let getSingleRegistry = (registryId)=>{
     return $q((resolve, reject)=>{

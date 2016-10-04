@@ -40,17 +40,6 @@ app.factory("MemberFactory", ($q, $http, FirebaseURL)=>{
     });
   };
 
-  //   let getMembers = (memberId)=>{
-  //   return $q((resolve, reject)=>{
-  //     $http.get(`${FirebaseURL}/members/${memberId}.json`)
-  //     .success((memberData)=>{
-  //       resolve(memberData);
-  //     })
-  //     .error((error)=>{
-  //       reject(error);
-  //     });
-  //   });
-  // };
 
   let getMembersOfRegistry = (registryId)=>{
     return $q((resolve, reject)=>{

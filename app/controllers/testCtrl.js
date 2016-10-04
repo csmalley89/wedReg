@@ -39,6 +39,10 @@ app.controller('TestCtrl', function($scope, $routeParams, RegistryFactory, $rout
     });
   }
 
+
+
+
+
 })
 
 

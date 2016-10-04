@@ -30,6 +30,11 @@
   <div class="parallax" parallax><img src="img/weddingbanner.png"></div>
 </div>
 
+<div class ="row">
+  <div class="col s12">
+    <a class="waves-effect waves-light btn modal-trigger" href="#myGuests" ng-click="viewRegisteredGuests()" modal>My Guests</a>
+  </div>
+</div>
 
 <div class="row">
   <div ng-repeat="item in itemCollection">
@@ -54,3 +59,24 @@
     </div>
   </div>
 </div>
+
+<!-- registetred guests modal -->
+  <div id="myGuests" class="modal bottom-sheet">
+    <div ng-repeat="member in myGuests">
+      <div class="modal-content">
+        <ul class="collection">
+          <li class="collection-item avatar">
+            <span class="title">{{member.firstName}} {{member.lastName}}</span>
+            <p>{{member.email}} <br>
+               {{member.street}} {{member.city}} {{member.state}} {{member.zip}}
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+      </div>
+
+    </div>
+  </div>

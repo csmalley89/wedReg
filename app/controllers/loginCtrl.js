@@ -99,7 +99,7 @@ app.controller("LoginCtrl", function($scope, AuthFactory, RegistryFactory, $rout
           uid: AuthFactory.getUserId(),
           registryId: null,
           guestId: guestId,
-          role: 'guest'
+          role: 'guest',
         }
         MemberFactory.addMember(memberObj)
         if (guestData) {

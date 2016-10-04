@@ -28,7 +28,24 @@ app.controller('AmazonCtrl', function($scope, AmazonFactory, AuthFactory, Member
         }
       })
     }
-    getRegistryInfo();
+  getRegistryInfo();
+
+
+  $scope.viewRegisteredGuests = () => {
+
+    let myGuests = [];
+    MemberFactory.getMembersOfRegistry($scope.registryId)
+    .then((guestsArr)=>{
+      if(guestsArr !== null) {
+        Object.keys(guestsArr).forEach((key)=>{
+          guestsArr[key].id = key;
+          myGuests.push(guestsArr[key])
+        });
+        $scope.myGuests = myGuests;
+        console.log(myGuests)
+      }
+    })
+  }
 
 
 
