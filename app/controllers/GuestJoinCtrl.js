@@ -124,6 +124,7 @@ app.controller("GuestViewRegistryCtrl", function($scope, $routeParams, AuthFacto
       Object.keys(userData).forEach((key)=>{
         $scope.email = userData[key].email,
         $scope.uid = userData[key].uid;
+        console.log(userData)
       });
       let giftContributionObj = {
         giftId : gift.id,

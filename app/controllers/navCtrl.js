@@ -27,42 +27,41 @@ app.controller("NavCtrl", function($scope, AuthFactory, RegistryFactory, $window
     }
   });
 
-  //We cannot grab the contributions for a user if the webpage does not recognize that a user is logged in. Therefore, we need to watch the state - isReady to make sure it is true before checking for notifications. We also want to watch the length of the notifications
-  // $scope.$watch('isReady', function isReadyChange(newValue, oldValue) {
-  //   console.log("new value", newValue);
-  //   if ($scope.isReady){
-  //     getContributions();
-  //     // getRegistries();
-  //     $scope.$watch('numberOfContributions', function numberOfContributionsChange(newValue, oldValue) {
-  //       console.log("new value, oldValue", newValue, oldValue)
-  //       getContributions();
-  //     }, true);
-  //   }
-  // }, true);
+  $scope.$watch('isReady', function isReadyChange(newValue, oldValue) {
+    console.log("new value", newValue);
+    if ($scope.isReady){
+      getContributions();
+      // getRegistries();
+      $scope.$watch('numberOfContributions', function numberOfContributionsChange(newValue, oldValue) {
+        console.log("new value, oldValue", newValue, oldValue)
+        getContributions();
+      }, true);
+    }
+  }, true);
 
 
-  // $scope.getContributions = ()=>{
-  //   getContributions();
-  // };
+  $scope.getContributions = ()=>{
+    getContributions();
+  };
 
-  // function getContributions (){
-  //   let contributionsArr = [];
-  //   console.log("get contributions is running");
-  //   RegistryFactory.getContributions()
-  //   .then((contributions)=>{
-  //     console.log("contributions to you", contributions);
-  //     if(Object.keys(contributions).length){
-  //       $scope.hasContributions = true;
-  //       Object.keys(contributions).forEach((key)=>{
-  //         contributions[key].id = key;
-  //         contributionsArr.push(contributions[key]);
-  //       })
-  //       $scope.contributions = contributions
-  //     } else {
-  //       $scope.hasContributions = false;
-  //     }
-  //   });
-  // }
+  function getContributions (){
+    let contributionsArr = [];
+    console.log("get contributions is running");
+    RegistryFactory.getContributions()
+    .then((contributions)=>{
+      console.log("contributions to you", contributions);
+      if(Object.keys(contributions).length){
+        $scope.hasContributions = true;
+        Object.keys(contributions).forEach((key)=>{
+          contributions[key].id = key;
+          contributionsArr.push(contributions[key]);
+        })
+        $scope.contributions = contributions
+      } else {
+        $scope.hasContributions = false;
+      }
+    });
+  }
 
   // $scope.acceptOrDecline = (contribution)=>{
   //   let modalInstance = $uibModal.open({
