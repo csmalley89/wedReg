@@ -155,7 +155,17 @@ app.factory("RegistryFactory", ($q, $http, FirebaseURL, AuthFactory, GiftFactory
       });
     });
   };
-
+   let getGiftContributions = (giftId)=>{
+    return $q((resolve, reject)=>{
+      $http.get(`${FirebaseURL}/contributions.json?orderBy="giftId"&equalTo="${giftId}"`)
+      .success((contributions)=>{
+        resolve(contributions);
+      })
+      .error((error)=>{
+        reject(error);
+      });
+    });
+  };
   let deleteContribution = (contributionId)=>{
     return $q((resolve, reject)=>{
       $http.delete(`${FirebaseURL}/contributions/${contributionId}.json`)
@@ -168,5 +178,5 @@ app.factory("RegistryFactory", ($q, $http, FirebaseURL, AuthFactory, GiftFactory
     });
   };
 
-  return {createRegistry, createGuest, deleteRegistry, getSingleRegistry, updateRegistry, getRegistryList, createContribution, getContributions, deleteContribution, addRegistryToUser, getContributionsInRegistry};
+  return {createRegistry, createGuest, deleteRegistry, getSingleRegistry, updateRegistry, getRegistryList, createContribution, getContributions, getGiftContributions, deleteContribution, addRegistryToUser, getContributionsInRegistry};
 });

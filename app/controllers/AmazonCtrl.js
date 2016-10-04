@@ -47,7 +47,21 @@ app.controller('AmazonCtrl', function($scope, AmazonFactory, AuthFactory, Member
     })
   }
 
+  $scope.guestContributions = () => {
 
+    let contributions = [];
+    RegistryFactory.getContributionsInRegistry($scope.registryId)
+    .then((guestsContributionArr)=>{
+      if(guestsContributionArr !== null) {
+        Object.keys(guestsContributionArr).forEach((key)=>{
+          guestsContributionArr[key].id = key;
+          contributions.push(guestsContributionArr[key])
+        });
+        $scope.contributions = contributions;
+        console.log(contributions)
+      }
+    })
+  }
 
   // Bound to input to assist amazon search
   $scope.amazonSearchTerm = "";

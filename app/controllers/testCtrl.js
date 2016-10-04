@@ -39,7 +39,13 @@ app.controller('TestCtrl', function($scope, $routeParams, RegistryFactory, $rout
     });
   }
 
-
+  $scope.guestContributions = (registryId) => {
+    RegistryFactory.guestContributionsInRegistry($scope.registryId)
+    .then((contributionData) =>{
+      $scope.contribution = contributionData;
+      console.log(contributionData)
+    })
+  }
 
 
 
